@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Menu } from './menu.enum';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app works!';
+  showRecipes = true;
+
+  onMenuSelect(idMenu: number) {
+    this.showRecipes = idMenu == Menu.Recipes ? true : false;
+  }
 }
