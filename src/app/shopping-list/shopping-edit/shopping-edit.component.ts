@@ -1,6 +1,6 @@
 import { Component, ViewChild, ElementRef, Output, EventEmitter } from "@angular/core";
 import { Ingredient } from "app/shared/Ingredient.model";
-import { ShoppingListService } from "app/services/shopping-list.service";
+import { ShoppingListService } from "../shopping-list.service";
 
 @Component({
     selector: "app-shopping-edit",

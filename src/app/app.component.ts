@@ -1,13 +1,12 @@
 import { Component } from '@angular/core';
 import { Menu } from './menu.enum';
-import { RecipeService } from "app/services/recipe.service";
-import { ShoppingListService } from "app/services/shopping-list.service";
+import { ShoppingListService } from "./shopping-list/shopping-list.service";
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  providers:[RecipeService, ShoppingListService]
+  providers:[ShoppingListService]
 })
 export class AppComponent {
   showRecipes = true;
