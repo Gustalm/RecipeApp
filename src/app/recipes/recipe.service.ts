@@ -13,11 +13,11 @@ export class RecipeService implements OnInit {
 
     constructor(private slService: ShoppingListService) {
         this.recipes =
-            [new Recipe("Tasty Schinezel",
+            [new Recipe(1,"Tasty Schinezel",
                 "Awesome food this one",
                 "http://www.seriouseats.com/images/2015/09/20150914-pressure-cooker-recipes-roundup-09.jpg",
                 [new Ingredient("Bread", 1), new Ingredient("Tomatoes", 2)]),
-            new Recipe("Pro Burguerzor deliciazor",
+            new Recipe(2,"Pro Burguerzor deliciazor",
                 "Just a hamburguer",
                 "http://www.seriouseats.com/images/2015/09/20150914-pressure-cooker-recipes-roundup-09.jpg",
                 [new Ingredient("Bread", 1), new Ingredient("Hamburguer", 2)])];
@@ -39,10 +39,10 @@ export class RecipeService implements OnInit {
         this.slService.showIngredients(ingredients);
     }
 
-    getRecipeByName(name: string) {
+    getRecipeById(id: number) {
         const recipe = this.recipes.find(
             (s) => {
-                return s.name === name;
+                return s.id === id;
             }
         );
         return recipe;

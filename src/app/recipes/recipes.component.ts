@@ -7,15 +7,11 @@ import { Ingredient } from "app/shared/Ingredient.model";
   selector: 'app-recipes',
   templateUrl: './recipes.component.html',
   styleUrls: ['./recipes.component.css'],
-  providers: [RecipeService]
+  providers: []
 })
 export class RecipesComponent implements OnInit {
-  recipeSelected: Recipe;
 
   constructor(private recipeService: RecipeService) {
-    this.recipeService.onRecipeSelectEmitter.subscribe((recipe: Recipe) => {
-      this.recipeSelected = recipe;
-    })
   }
 
   ngOnInit() {

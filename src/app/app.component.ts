@@ -9,9 +9,4 @@ import { ShoppingListService } from "./shopping-list/shopping-list.service";
   providers:[]
 })
 export class AppComponent {
-  showRecipes = true;
-
-  onMenuSelect(idMenu: number) {
-    this.showRecipes = idMenu == Menu.Recipes ? true : false;
-  }
 }

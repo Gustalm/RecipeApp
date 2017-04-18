@@ -10,6 +10,6 @@ export class RecipeDetailResolver implements Resolve<Recipe>{
     }
 
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Recipe | Observable<Recipe> | Promise<Recipe> {
-        return this.recipeService.getRecipeByName(route.params["name"]);
+        return this.recipeService.getRecipeById(+route.params["id"]);
     }
 }
