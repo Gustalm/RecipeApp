@@ -6,7 +6,7 @@ import { ShoppingListService } from "./shopping-list/shopping-list.service";
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  providers:[ShoppingListService]
+  providers:[]
 })
 export class AppComponent {
   showRecipes = true;

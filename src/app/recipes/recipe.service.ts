@@ -38,4 +38,13 @@ export class RecipeService implements OnInit {
     sendRecipesToShoppingList(ingredients: Ingredient[]) {
         this.slService.showIngredients(ingredients);
     }
+
+    getRecipeByName(name: string) {
+        const recipe = this.recipes.find(
+            (s) => {
+                return s.name === name;
+            }
+        );
+        return recipe;
+    }
 }
