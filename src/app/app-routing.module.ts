@@ -5,13 +5,18 @@ import { NgModule } from "@angular/core";
 import { RecipeDetailComponent } from "app/recipes/recipe-detail/recipe-detail.component";
 import { RecipeDetailResolver } from "app/recipes/recipe-detail/recipe-detail-resolver.service";
 import { EmptyRecipeComponent } from "app/recipes/empty-recipe/empty-recipe.component";
+import { RecipeEditComponent } from "app/recipes/recipe-edit/recipe-edit.component";
 
 const AppRoutes: Routes = [
     { path: '', redirectTo: '/recipes', pathMatch: 'full' },
-    { path: 'recipes', component: RecipesComponent, children: [
-        { path: '', component: EmptyRecipeComponent },
-        { path: ':id', component: RecipeDetailComponent, resolve: {recipe: RecipeDetailResolver}}
-    ] },
+    {
+        path: 'recipes', component: RecipesComponent, children: [
+            { path: '', component: EmptyRecipeComponent },
+            { path: 'new', component: RecipeEditComponent },
+            { path: ':id', component: RecipeDetailComponent, resolve: { recipe: RecipeDetailResolver } },
+            { path: ':id/edit', component: RecipeEditComponent }
+        ]
+    },
     { path: 'shopping-list', component: ShoppingListComponent },
 ];
 

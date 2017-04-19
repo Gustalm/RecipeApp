@@ -7,10 +7,6 @@ import { ShoppingListService } from "app/shopping-list/shopping-list.service";
 export class RecipeService implements OnInit {
     private recipes: Recipe[]
 
-    selectedRecipe: Recipe;
-
-    onRecipeSelectEmitter = new EventEmitter<Recipe>();
-
     constructor(private slService: ShoppingListService) {
         this.recipes =
             [new Recipe(1,"Tasty Schinezel",
@@ -24,11 +20,6 @@ export class RecipeService implements OnInit {
     }
 
     ngOnInit(): void {
-    }
-
-    onRecipeSelect(recipe: Recipe) {
-        this.selectedRecipe = recipe;
-        this.onRecipeSelectEmitter.emit(recipe);
     }
 
     getRecipes() {

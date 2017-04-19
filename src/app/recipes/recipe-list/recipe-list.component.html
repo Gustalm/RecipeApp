@@ -1,5 +1,7 @@
 <div class="row">
-    <div class="col-xs-12"><button class="btn btn-success">New Recipe</button></div>
+    <!--I could do here with (click) and make a navigation through the component but routerlink is faster to do. actually did it just as an example-->
+    <!--<div class="col-xs-12"><button class="btn btn-success" (click)="onNewRecipe()">New Recipe</button></div>-->
+    <div class="col-xs-12"><button class="btn btn-success" [routerLink]="['new']">New Recipe</button></div>
 </div>
 <hr>
 <div class="row">
