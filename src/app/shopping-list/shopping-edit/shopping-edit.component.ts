@@ -1,6 +1,7 @@
 import { Component, ViewChild, ElementRef, Output, EventEmitter } from "@angular/core";
 import { Ingredient } from "app/shared/Ingredient.model";
 import { ShoppingListService } from "../shopping-list.service";
+import { FormGroup } from "@angular/forms";
 
 @Component({
     selector: "app-shopping-edit",
@@ -19,7 +20,11 @@ export class ShoppingEditComponent {
         this.shoppingListService.addIngredient(this.ingredient);
     }
 
-    onClear() {
-        this.shoppingListService.clearIngredients();
+    onClear(form: FormGroup) {
+        form.reset();
+    }
+
+    onSubmit(ngForm: FormGroup){
+        console.log(ngForm);
     }
 }
