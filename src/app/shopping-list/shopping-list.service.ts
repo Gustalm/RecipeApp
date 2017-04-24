@@ -21,18 +21,23 @@ export class ShoppingListService {
     addIngredient(ingredient: Ingredient) {
         this.ingredients.push(ingredient);
         // this.ingredientsChanged.emit(this.getIngredients())
-        this.ingredientsChanged.next(this.getIngredients())
+        this.updateViewIngredients(this.getIngredients())
     }
 
     updateIngredient(ingredient: Ingredient, id: number) {
         this.ingredients[id] = ingredient;
-        this.ingredientsChanged.next(this.getIngredients())
+        this.updateViewIngredients(this.getIngredients())
+    }
+
+    deleteIngredient(id: number) {
+        this.ingredients.splice(id, 1);
+        this.updateViewIngredients(this.ingredients)
     }
 
     clearIngredients() {
         this.ingredients.length = 0;
         // this.ingredientsChanged.emit(this.getIngredients())
-        this.ingredientsChanged.next(this.getIngredients())
+        this.updateViewIngredients(this.getIngredients())
     }
 
     getIngredients() {
@@ -46,6 +51,10 @@ export class ShoppingListService {
     showIngredients(ingredients: Ingredient[]) {
         this.ingredients.push(...ingredients);
         // this.ingredientsChanged.emit(this.getIngredients())
-        this.ingredientsChanged.next(this.getIngredients());
+        this.updateViewIngredients(this.getIngredients());
+    }
+
+    updateViewIngredients(ingredients: Ingredient[]){
+        this.ingredientsChanged.next(ingredients.slice())
     }
 }

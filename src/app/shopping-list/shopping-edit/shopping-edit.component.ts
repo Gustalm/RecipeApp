@@ -13,7 +13,7 @@ import { ShoppingListService } from "../shopping-list.service";
 
 export class ShoppingEditComponent implements OnInit, OnDestroy {
     @ViewChild('formSubmit') form: NgForm;
-    ingredient = new Ingredient('', 0);
+    ingredient: Ingredient;
     subscription: Subscription
     editMode = false;
     idEditItem: number;
@@ -26,6 +26,12 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
             this.editMode = true;
             this.idEditItem = id;
             this.ingredient = this.shoppingListService.getIngredient(id);
+            this.form.setValue({
+                name: this.ingredient.name,
+                amountGroup: {
+                    amount: this.ingredient.amount
+                }
+            })
         })
     }
 
@@ -36,6 +42,13 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
                 amount: 1
             }
         })
+
+        this.editMode = false;
+    }
+    
+    onDelete(){
+        this.shoppingListService.deleteIngredient(this.idEditItem);
+        this.onClear();
     }
 
     onSubmit() {
