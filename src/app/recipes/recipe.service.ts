@@ -3,13 +3,16 @@ import { EventEmitter, OnInit, Injectable } from "@angular/core";
 import { Ingredient } from "app/shared/Ingredient.model";
 import { ShoppingListService } from "app/shopping-list/shopping-list.service";
 import { Subject } from "rxjs/Subject";
+import { Http, Response } from '@angular/http';
+import 'rxjs/Rx'
 
 @Injectable()
 export class RecipeService implements OnInit {
     private recipes: Recipe[]
     onRecipesUpdate = new Subject<Recipe[]>();
+    connectionString = 'https://ng-recipe-book-9e268.firebaseio.com/recipes.json';
 
-    constructor(private slService: ShoppingListService) {
+    constructor(private slService: ShoppingListService, private http: Http) {
         this.recipes =
             [new Recipe(1, "Tasty Schinezel",
                 "Awesome food this one",
@@ -29,6 +32,15 @@ export class RecipeService implements OnInit {
     }
 
     getRecipes() {
+        return this.http.get(this.connectionString)
+            .map((response: Response) => {
+                console.log(response);
+                return response.json()
+            })
+        // return this.recipes.slice();
+    }
+
+    getRecipesStatic() {
         return this.recipes.slice();
     }
 
@@ -48,17 +60,28 @@ export class RecipeService implements OnInit {
     addRecipe(recipe: Recipe) {
         this.recipes.push(recipe);
         this.emitRecipes();
+        // return this.http.post(this.connectionString, recipe);
     }
 
     updateRecipe(recipe: Recipe) {
         let index = this.recipes.findIndex(x => x.id == recipe.id)
         this.recipes[index] = recipe;
         this.emitRecipes();
+        // return this.http.put(this.connectionString, recipe);
     }
 
     delete(id: number) {
         let index = this.recipes.findIndex(x => x.id == id);
-        this.recipes.splice(index,1);
+        this.recipes.splice(index, 1);
+        this.emitRecipes();
+    }
+
+    clear(){
+        this.recipes = [];
+    }
+
+    setRecipes(recipes: Recipe[]){
+        this.recipes = recipes;
         this.emitRecipes();
     }
 }
