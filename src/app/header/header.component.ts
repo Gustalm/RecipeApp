@@ -5,6 +5,7 @@ import { Response } from '@angular/http';
 import { Menu } from '../menu.enum';
 import { RecipeService } from "app/recipes/recipe.service";
 import { AuthService } from "app/auth/auth.service";
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-header',
@@ -12,7 +13,7 @@ import { AuthService } from "app/auth/auth.service";
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  constructor(private dataStorageService: DataStorageService, private recipeService: RecipeService, private authService: AuthService) { }
+  constructor(private dataStorageService: DataStorageService, private recipeService: RecipeService, private authService: AuthService, private router: Router) { }
 
   ngOnInit() {
   }
@@ -25,5 +26,9 @@ export class HeaderComponent implements OnInit {
 
   onGetData(){
     this.dataStorageService.getRecipes();
+  }
+
+  onLogout(){
+    this.authService.logOut();
   }
 }
