@@ -28,6 +28,10 @@ export class RecipeService implements OnInit {
         this.onRecipesUpdate.next(this.recipes.slice());
     }
 
+    getRecipes() {
+        return this.recipes.slice();
+    }
+
     sendRecipesToShoppingList(ingredients: Ingredient[]) {
         this.slService.showIngredients(ingredients);
     }
@@ -49,6 +53,12 @@ export class RecipeService implements OnInit {
     updateRecipe(recipe: Recipe) {
         let index = this.recipes.findIndex(x => x.id == recipe.id)
         this.recipes[index] = recipe;
+        this.emitRecipes();
+    }
+
+    delete(id: number) {
+        let index = this.recipes.findIndex(x => x.id == id);
+        this.recipes.splice(index,1);
         this.emitRecipes();
     }
 }

@@ -16,12 +16,12 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.ingredients = this.shoppingListService.getIngredients();
     this.subscriptions.push(
       this.shoppingListService.ingredientsChanged.subscribe((ingredients: Ingredient[]) => {
         this.ingredients = ingredients;
       })
     );
+    this.ingredients = this.shoppingListService.getIngredients();
   }
 
   ngOnDestroy(): void {
@@ -30,7 +30,7 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
     });
   }
 
-  onIngredientClick(index: number){
-    this.shoppingListService.ingredientSelected.next(index);
+  onIngredientClick(index: number) {
+    this.shoppingListService.selectIngredient(index);
   }
 }

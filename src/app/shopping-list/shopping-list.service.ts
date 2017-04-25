@@ -57,4 +57,8 @@ export class ShoppingListService {
     updateViewIngredients(ingredients: Ingredient[]){
         this.ingredientsChanged.next(ingredients.slice())
     }
+
+    selectIngredient(id: number){
+        this.ingredientSelected.next(id);
+    }
 }

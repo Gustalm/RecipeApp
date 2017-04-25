@@ -59,7 +59,7 @@ export class RecipeEditComponent implements OnInit {
     this.recipeForm = this.formBuilder.group({
       id: [id],
       name: [recipeName, [Validators.required]],
-      imageUrl: [imageUrl, null, this.customValidators.required2],
+      imagePath: [imageUrl, null, this.customValidators.required2],
       // , Validators.pattern('/(https?:\/\/.*\.(?:png|jpg))/i')
       description: [description, [Validators.required]],
       ingredients: recipeIngredients
@@ -71,12 +71,18 @@ export class RecipeEditComponent implements OnInit {
     let recipe = new Recipe(formProperties.id, formProperties.name, formProperties.description, formProperties.imageUrl, formProperties.ingredients.value)
 
     if (this.editMode)
-      this.recipeService.updateRecipe(recipe);
+      this.recipeService.updateRecipe(formProperties);
     else
-      this.recipeService.addRecipe(recipe);
+      this.recipeService.addRecipe(formProperties);
 
     this.router.navigate(['/recipes',formProperties.id])
     console.log(this.recipeForm);
+  }
+
+  onCancel(){
+    this.editMode = false;
+    this.recipeForm.reset();
+    this.router.navigate(['/recipes']);
   }
 
   onAddIngredient() {
