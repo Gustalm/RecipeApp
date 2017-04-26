@@ -5,14 +5,15 @@ import { ShoppingListService } from "app/shopping-list/shopping-list.service";
 import { Subject } from "rxjs/Subject";
 import { Http, Response } from '@angular/http';
 import 'rxjs/Rx'
+import { AuthService } from "app/auth/auth.service";
 
 @Injectable()
 export class RecipeService implements OnInit {
     private recipes: Recipe[]
     onRecipesUpdate = new Subject<Recipe[]>();
-    connectionString = 'https://ng-recipe-book-9e268.firebaseio.com/recipes.json';
+    connectionString = 'https://ng-recipe-book-9e268.firebaseio.com/recipes.json?auth=' + this.authService.getToken();
 
-    constructor(private slService: ShoppingListService, private http: Http) {
+    constructor(private slService: ShoppingListService, private http: Http, private authService: AuthService) {
         this.recipes =
             [new Recipe(1, "Tasty Schinezel",
                 "Awesome food this one",
@@ -34,8 +35,8 @@ export class RecipeService implements OnInit {
     getRecipes() {
         return this.http.get(this.connectionString)
             .map((response: Response) => {
-                console.log(response);
-                return response.json()
+                const data = response.json();
+                return data;
             })
         // return this.recipes.slice();
     }
@@ -60,15 +61,23 @@ export class RecipeService implements OnInit {
     addRecipe(recipe: Recipe) {
         this.recipes.push(recipe);
         this.emitRecipes();
-        // return this.http.post(this.connectionString, recipe);
+        // return this.postPutRecipe(recipe);
     }
 
     updateRecipe(recipe: Recipe) {
         let index = this.recipes.findIndex(x => x.id == recipe.id)
         this.recipes[index] = recipe;
         this.emitRecipes();
-        // return this.http.put(this.connectionString, recipe);
+        // return this.postPutRecipe(recipe);
     }
+
+    // postPutRecipe(recipe: Recipe){
+    //     return this.http.put(this.connectionString, recipe).map((response: Response) => {
+    //         let recipe: Recipe = response.json()
+    //         console.log(recipe);
+    //         return recipe;
+    //     });
+    // }
 
     delete(id: number) {
         let index = this.recipes.findIndex(x => x.id == id);
@@ -76,11 +85,11 @@ export class RecipeService implements OnInit {
         this.emitRecipes();
     }
 
-    clear(){
+    clear() {
         this.recipes = [];
     }
 
-    setRecipes(recipes: Recipe[]){
+    setRecipes(recipes: Recipe[]) {
         this.recipes = recipes;
         this.emitRecipes();
     }

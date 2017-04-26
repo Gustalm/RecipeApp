@@ -9,6 +9,7 @@ import { RecipeEditComponent } from "app/recipes/recipe-edit/recipe-edit.compone
 import { SignUpComponent } from "app/auth/signup/signup.component";
 import { SigninComponent } from "app/auth/signin/signin.component";
 import { AuthGuard } from "app/auth/auth-guard.service";
+import { CanDeactivateRecipe } from "app/recipes/recipe-edit/can-deactivate-guard.service";
 
 const AppRoutes: Routes = [
     { path: '', redirectTo: '/recipes', pathMatch: 'full' },
@@ -17,7 +18,7 @@ const AppRoutes: Routes = [
             { path: '', component: EmptyRecipeComponent },
             { path: 'new', component: RecipeEditComponent, canActivate: [AuthGuard] },
             { path: ':id', component: RecipeDetailComponent, resolve: { recipe: RecipeDetailResolver } },
-            { path: ':id/edit', component: RecipeEditComponent, canActivate: [AuthGuard] }
+            { path: ':id/edit', component: RecipeEditComponent, canActivate: [AuthGuard], canDeactivate: [CanDeactivateRecipe] }
         ]
     },
     { path: 'shopping-list', component: ShoppingListComponent },

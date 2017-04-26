@@ -24,6 +24,11 @@ import { SigninComponent } from './auth/signin/signin.component';
 import { AuthService } from "app/auth/auth.service";
 import { AuthGuard } from "app/auth/auth-guard.service";
 
+import { ToasterModule, ToasterService } from 'angular2-toaster';
+import { ToasterComponent } from './shared/toaster/toaster.component';
+import { CanDeactivateRecipe } from "app/recipes/recipe-edit/can-deactivate-guard.service";
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,16 +43,27 @@ import { AuthGuard } from "app/auth/auth-guard.service";
     EmptyRecipeComponent,
     RecipeEditComponent,
     SignUpComponent,
-    SigninComponent
+    SigninComponent,
+    ToasterComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
     ReactiveFormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ToasterModule
   ],
-  providers: [RecipeService, ShoppingListService, RecipeDetailResolver, DataStorageService, AuthService, AuthGuard],
+  providers: [
+    RecipeService,
+    ShoppingListService,
+    RecipeDetailResolver,
+    DataStorageService,
+    AuthService,
+    AuthGuard,
+    ToasterService,
+    CanDeactivateRecipe
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

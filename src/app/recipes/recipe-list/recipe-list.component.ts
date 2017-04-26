@@ -24,8 +24,7 @@ export class RecipeListComponent implements OnInit, OnDestroy {
     this.recipes = this.recipeService.getRecipesStatic();
 
     // this.recipeService.getRecipes().subscribe((response) =>{
-    //   console.log(response)
-    //   this.recipes = [response];
+    //   this.recipes = response;
     // });
   }
 
