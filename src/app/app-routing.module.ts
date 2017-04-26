@@ -13,14 +13,7 @@ import { CanDeactivateRecipe } from "app/recipes/recipe-edit/can-deactivate-guar
 
 const AppRoutes: Routes = [
     { path: '', redirectTo: '/recipes', pathMatch: 'full' },
-    {
-        path: 'recipes', component: RecipesComponent, children: [
-            { path: '', component: EmptyRecipeComponent },
-            { path: 'new', component: RecipeEditComponent, canActivate: [AuthGuard] },
-            { path: ':id', component: RecipeDetailComponent, resolve: { recipe: RecipeDetailResolver } },
-            { path: ':id/edit', component: RecipeEditComponent, canActivate: [AuthGuard], canDeactivate: [CanDeactivateRecipe] }
-        ]
-    },
+
     { path: 'shopping-list', component: ShoppingListComponent },
     { path: 'signup', component: SignUpComponent},
     { path: 'signin', component: SigninComponent}
