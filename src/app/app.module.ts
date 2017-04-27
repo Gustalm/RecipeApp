@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
@@ -16,26 +15,26 @@ import { AuthGuard } from "app/auth/auth-guard.service";
 import { ToasterModule, ToasterService } from 'angular2-toaster';
 import { ToasterComponent } from './shared/toaster/toaster.component';
 import { CanDeactivateRecipe } from "app/recipes/recipe-edit/can-deactivate-guard.service";
-import { RecipesModule } from "app/recipes/recipes.module";
 import { SharedModule } from "app/shared/shared.module";
-import { ShoppingListModule } from "app/shopping-list/shopping-list.module";
 import { AuthModule } from "app/auth/auth.module";
+import { HomeComponent } from './home/home.component';
+import { ErrorPageModule } from "app/error-page/error-page.module";
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    ToasterComponent
+    ToasterComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
     HttpModule,
     AppRoutingModule,
     ToasterModule,
-    RecipesModule,
     SharedModule,
-    ShoppingListModule,
-    AuthModule
+    AuthModule,
+    ErrorPageModule
   ],
   providers: [
     RecipeService,

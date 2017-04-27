@@ -10,7 +10,7 @@ import { CanDeactivateRecipe } from "app/recipes/recipe-edit/can-deactivate-guar
 
 const routes: Routes = [
     {
-        path: 'recipes', component: RecipesComponent, children: [
+        path: '', component: RecipesComponent, children: [
             { path: '', component: EmptyRecipeComponent },
             { path: 'new', component: RecipeEditComponent, canActivate: [AuthGuard] },
             { path: ':id', component: RecipeDetailComponent, resolve: { recipe: RecipeDetailResolver } },
