@@ -2,7 +2,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { DataStorageService } from "app/shared/data-storage.service";
 import { Response } from '@angular/http';
 
-import { Menu } from '../menu.enum';
+import { Menu } from '../../menu.enum';
 import { RecipeService } from "app/recipes/recipe.service";
 import { AuthService } from "app/auth/auth.service";
 import { Router } from "@angular/router";
@@ -13,7 +13,10 @@ import { Router } from "@angular/router";
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  constructor(private dataStorageService: DataStorageService, private recipeService: RecipeService, private authService: AuthService, private router: Router) { }
+  constructor(private dataStorageService: DataStorageService, 
+  private recipeService: RecipeService,
+   public authService: AuthService, 
+   private router: Router) { }
 
   ngOnInit() {
   }

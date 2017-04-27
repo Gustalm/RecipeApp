@@ -7,7 +7,7 @@ import { ToasterConfig } from "angular2-toaster";
   styleUrls: ['./toaster.component.css']
 })
 export class ToasterComponent implements OnInit {
-  private toasterConfig: ToasterConfig;
+  public toasterConfig: ToasterConfig;
 
   constructor() { }
 

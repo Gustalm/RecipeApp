@@ -124,4 +124,8 @@ export class RecipeEditComponent implements OnInit, CanDeactivateComponent {
         return true;
     }
   }
+
+  getIngredients(recipeForm){
+    return recipeForm.get('ingredients').controls;
+  }
 }
